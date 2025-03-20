@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ChangeStageScript : MonoBehaviour {
+
+	//プレイヤー
 	[SerializeField]
 	GameObject player;
 
+	//移動先
 	[SerializeField]
 	GameObject[] stages;
 
+	//現在のステージ番号
 	int stageNum;
 
 	// Start is called before the first frame update
@@ -18,13 +22,18 @@ public class ChangeStageScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
-		if (Input.GetKeyDown(KeyCode.Return)) {
+		if (Input.GetKeyDown(KeyCode.Space)) {
+			//プレイヤーの相対ポジションを取得
 			Vector3 pos = player.transform.position - stages[stageNum].transform.position;
 
+			//ステージ番号を加算
 			stageNum++;
 			stageNum %= stages.Length;
+
+			//プレイヤーのポジションを変更
 			player.transform.position = pos + stages[stageNum].transform.position;
 
+			//カメラのポジションを変更
 			pos = stages[stageNum].transform.position;
 			pos.z = -10;
 			Camera.main.transform.position = pos;
