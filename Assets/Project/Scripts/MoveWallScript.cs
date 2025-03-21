@@ -169,8 +169,6 @@ public class MoveWallScript : MonoBehaviour {
 			pos.x = (newPos.x + oldPos.x) / 2 - 0.5f * Mathf.Cos(Mathf.PI / removeCount * moveCount);
 		}
 		pos.y = (newPos.y + oldPos.y) / 2 + 0.5f * Mathf.Sin(Mathf.PI / removeCount * moveCount);
-
-		transform.localScale = new Vector3(1, 1, 1);
 		return pos;
 	}
 

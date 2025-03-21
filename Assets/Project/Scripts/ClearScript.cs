@@ -20,6 +20,8 @@ public class ClearScript : MonoBehaviour {
 	}
 
 	public void IsClearEffect() {
+		
+
 		clearEffect.SetActive(true);
 	}
 }
