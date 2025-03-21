@@ -16,10 +16,7 @@ public class WoodFloor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKey(KeyCode.Space))
-		{
-			this.gameObject.SetActive(false);
-		}   
+
     }
 
 	public void SetBurnCount(int count, int removeCount)
