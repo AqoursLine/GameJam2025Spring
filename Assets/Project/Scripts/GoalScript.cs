@@ -13,6 +13,8 @@ public class GoalScript : MonoBehaviour {
 	MovePlayer movePlayer = null;
 
 	bool isGoal = false;
+
+	bool isFirst = true;
 	// Start is called before the first frame update
 	void Start() {
 		movePlayer = GetComponent<MovePlayer>();
@@ -28,13 +30,15 @@ public class GoalScript : MonoBehaviour {
 		}
 
 		//プレイヤーのスクリプトがある
-		if (isGoal) {
+		if (isGoal && isFirst) {
 			//プレイヤーの移動が終わったら
 			if (!movePlayer.GetPlayerState()) {
 				clearScript.IsClearEffect();
 			}
 
 			isGoal = false;
+
+			isFirst = false;
 		}
 	}
 }
