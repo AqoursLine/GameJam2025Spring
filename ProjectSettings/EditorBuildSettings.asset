@@ -5,10 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Project/Scenes/Test/Miyata/Title.unity
+    guid: c34be52d5273c744ca57f5448fc75933
+  - enabled: 1
     path: Assets/Project/Scenes/MainScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Project/Scenes/Test/Ohashi/Ohasji_test.unity
-    guid: 18dde157618e26245ad3bb6b19f01e3a
+    path: Assets/Project/Scenes/Test/Miyata/StageSelect.unity
+    guid: 46688ba51e1356f40aa2fd3098edea39
+  - enabled: 1
+    path: Assets/Project/Scenes/Test/Miyata/Miyata_ChangeStage.unity
+    guid: ad1e321a9b746254dbd2681137452309
   m_configObjects: {}
