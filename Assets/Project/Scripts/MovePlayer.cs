@@ -9,6 +9,7 @@ using static UnityEditor.PlayerSettings.SplashScreen;
 
 public class MovePlayer : MonoBehaviour
 {
+
 	enum MoveType       //プレイヤ－の移動タイプ
 	{
 		None = 0,
@@ -90,6 +91,9 @@ public class MovePlayer : MonoBehaviour
 	float CheckUpBlocks = 10;
 
 	private bool isRockFlg = false;
+
+	[SerializeField]
+	GageScript gageScript;
 
 	// Start is called before the first frame update
 	void Start()
@@ -301,14 +305,16 @@ public class MovePlayer : MonoBehaviour
 				{
 					return;
 				}
-				for(int i = 0; i < 3; i++)
-				{
-					if (isWood[i])
-					{
-						playerState = PlayerState.StateMove;
-						moveType = MoveType.MoveWoodBurn;
-						HP--;
-						return;
+
+				if (HP > 0) {
+					for (int i = 0; i < 3; i++) {
+						if (isWood[i]) {
+							playerState = PlayerState.StateMove;
+							moveType = MoveType.MoveWoodBurn;
+							HP--;
+							gageScript.ChangeGage(HP, defaultHP);
+							return;
+						}
 					}
 				}
 
@@ -452,6 +458,7 @@ public class MovePlayer : MonoBehaviour
 					if (HP > 0)
 					{
 						HP--;
+						gageScript.ChangeGage(HP, defaultHP);
 					}
 
 					//isMoveEnd = false;
@@ -584,6 +591,8 @@ public class MovePlayer : MonoBehaviour
 					if (HP > 0)
 					{
 						HP--;
+
+						gageScript.ChangeGage(HP, defaultHP);
 					}
 					//isMoveEnd = false;
 					return;
@@ -624,6 +633,8 @@ public class MovePlayer : MonoBehaviour
 					if (HP > 0)
 					{
 						HP--;
+
+						gageScript.ChangeGage(HP, defaultHP);
 					}
 					//isMoveEnd = false;
 				}
@@ -661,6 +672,8 @@ public class MovePlayer : MonoBehaviour
 					if (HP > 0)
 					{
 						HP--;
+
+						gageScript.ChangeGage(HP, defaultHP);
 					}
 				}
 				break;
