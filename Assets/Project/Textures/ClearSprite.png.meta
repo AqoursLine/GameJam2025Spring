@@ -1,0 +1,774 @@
+fileFormatVersion: 2
+guid: 888fb16ce1ac3ae468e15fbe652b8668
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ClearSprite_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2850
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dfbd643844cd9a40944daf6704d8896
+      internalID: -1847656758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_1
+      rect:
+        serializedVersion: 2
+        x: 1195
+        y: 2850
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c05d749360823e94585119a69bd623a3
+      internalID: -1227168942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_2
+      rect:
+        serializedVersion: 2
+        x: 2390
+        y: 2850
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc8ce3adf6942fa4ab073fa81ccfdc02
+      internalID: 1392093320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_3
+      rect:
+        serializedVersion: 2
+        x: 3585
+        y: 2850
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c63939eb55e97c44a1c6cf00539bd22
+      internalID: -343029905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_4
+      rect:
+        serializedVersion: 2
+        x: 4780
+        y: 2850
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2751bf90cd182d4189b9d5b925d4baa
+      internalID: 1686395200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2280
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9f4516affe497a4ab1975dfff9b229a
+      internalID: 1757477398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_6
+      rect:
+        serializedVersion: 2
+        x: 1195
+        y: 2280
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6707b584d55b1064c90c0c4d9639dce5
+      internalID: -2109671562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_7
+      rect:
+        serializedVersion: 2
+        x: 2390
+        y: 2280
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3910c26dda958e45b386e3f530cf20c
+      internalID: -415705155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_8
+      rect:
+        serializedVersion: 2
+        x: 3585
+        y: 2280
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b20ea8b3f0c1aa14ab30c3cb069bffb3
+      internalID: 2052447922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_9
+      rect:
+        serializedVersion: 2
+        x: 4780
+        y: 2280
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 507efd47996845545895a147a82570e8
+      internalID: 814136275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1710
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37cf1cce115de8a4db0c09f1a5175a48
+      internalID: -768008371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_11
+      rect:
+        serializedVersion: 2
+        x: 1195
+        y: 1710
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f9765b3d093d4b4481a28250b8610de
+      internalID: 1179783852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_12
+      rect:
+        serializedVersion: 2
+        x: 2390
+        y: 1710
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf02957ff7a758e499491d9af82fe95a
+      internalID: 1622545465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_13
+      rect:
+        serializedVersion: 2
+        x: 3585
+        y: 1710
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f71529b4b87f0647856a2e0b4cfe3d1
+      internalID: 911496672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_14
+      rect:
+        serializedVersion: 2
+        x: 4780
+        y: 1710
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 994b20dc983d6fc40a4c03daa09d32ca
+      internalID: -669849146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1140
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d0e4393f4159174e88e386e8ef683e1
+      internalID: -838936132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_16
+      rect:
+        serializedVersion: 2
+        x: 1195
+        y: 1140
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bb3ec28c2b8efa4599d6432ff3b2fda
+      internalID: -663331264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_17
+      rect:
+        serializedVersion: 2
+        x: 2390
+        y: 1140
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44201829614ba5d4fa3a7db2a98a1031
+      internalID: -2145060789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_18
+      rect:
+        serializedVersion: 2
+        x: 3585
+        y: 1140
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c667712b3613cc4b8f724dccfc2a02f
+      internalID: 273766676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_19
+      rect:
+        serializedVersion: 2
+        x: 4780
+        y: 1140
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd46658c017f05c458f1a45c3f506b4b
+      internalID: 314831741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 570
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98e587f2db5df16488d3a35adfa30fff
+      internalID: -467953955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_21
+      rect:
+        serializedVersion: 2
+        x: 1195
+        y: 570
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d880fa14b3d2f2845a6007467b0078fc
+      internalID: 909306036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_22
+      rect:
+        serializedVersion: 2
+        x: 2390
+        y: 570
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 649441fe90925074e98edaab9cd9c879
+      internalID: -1890036920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_23
+      rect:
+        serializedVersion: 2
+        x: 3585
+        y: 570
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2121ac46c3e55794e99e96f475561899
+      internalID: -1030820073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_24
+      rect:
+        serializedVersion: 2
+        x: 4780
+        y: 570
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e498092f69613d429df039e210667fc
+      internalID: 1468150278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6a030e6f58e4d44382ebefb49c71b43
+      internalID: -798199763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_26
+      rect:
+        serializedVersion: 2
+        x: 1195
+        y: 0
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7feb5c79e5303f4cb561fbf6825e568
+      internalID: -110701707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_27
+      rect:
+        serializedVersion: 2
+        x: 2390
+        y: 0
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d2a6a39954d0a248a21366d7118fce7
+      internalID: 1633135114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_28
+      rect:
+        serializedVersion: 2
+        x: 3585
+        y: 0
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a905ba742a42a746b65bce892cd5649
+      internalID: 1716698722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ClearSprite_29
+      rect:
+        serializedVersion: 2
+        x: 4780
+        y: 0
+        width: 1195
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f96f65095a6a434d8d9bee3a883ef56
+      internalID: 1774398031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      ClearSprite_0: -1847656758
+      ClearSprite_1: -1227168942
+      ClearSprite_10: -768008371
+      ClearSprite_11: 1179783852
+      ClearSprite_12: 1622545465
+      ClearSprite_13: 911496672
+      ClearSprite_14: -669849146
+      ClearSprite_15: -838936132
+      ClearSprite_16: -663331264
+      ClearSprite_17: -2145060789
+      ClearSprite_18: 273766676
+      ClearSprite_19: 314831741
+      ClearSprite_2: 1392093320
+      ClearSprite_20: -467953955
+      ClearSprite_21: 909306036
+      ClearSprite_22: -1890036920
+      ClearSprite_23: -1030820073
+      ClearSprite_24: 1468150278
+      ClearSprite_25: -798199763
+      ClearSprite_26: -110701707
+      ClearSprite_27: 1633135114
+      ClearSprite_28: 1716698722
+      ClearSprite_29: 1774398031
+      ClearSprite_3: -343029905
+      ClearSprite_4: 1686395200
+      ClearSprite_5: 1757477398
+      ClearSprite_6: -2109671562
+      ClearSprite_7: -415705155
+      ClearSprite_8: 2052447922
+      ClearSprite_9: 814136275
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
