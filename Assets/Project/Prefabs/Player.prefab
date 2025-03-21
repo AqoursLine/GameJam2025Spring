@@ -167,7 +167,7 @@ MonoBehaviour:
   removeCount: 10
   wallLayers:
     serializedVersion: 2
-    m_Bits: 448
+    m_Bits: 2496
   updraftLayers:
     serializedVersion: 2
     m_Bits: 128
@@ -179,7 +179,7 @@ MonoBehaviour:
     m_Bits: 512
   woodLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   defaultHP: 10
   CheckUpBlocks: 20
   gageScript: {fileID: 0}
