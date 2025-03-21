@@ -9,20 +9,19 @@ using static UnityEditor.PlayerSettings.SplashScreen;
 
 public class MovePlayer : MonoBehaviour
 {
-
-    enum MoveType       //ƒvƒŒƒCƒ„|‚ÌˆÚ“®ƒ^ƒCƒv
+	enum MoveType       //ãƒ—ãƒ¬ã‚¤ãƒ¤ï¼ã®ç§»å‹•ã‚¿ã‚¤ãƒ—
     {
         None = 0,
-        MoveWait,       //‘Ò‹@
-        MoveFloor,      //°ƒWƒƒƒ“ƒvˆÚ“®
-        MoveJump,       //ˆê’iã‚ÉƒWƒƒƒ“ƒv
-        MoveWall,       //•ÇA“Vˆä‚ğ”‡‚Á‚ÄˆÚ“®
-        MoveFloorWall,  //°‚©‚ç•Ç‚ÉˆÚ“®
-        MoveWallFloor,  //•Ç‚©‚ç°‚ÉˆÚ“®
-        MoveTopWall,    //“Vˆä‚©‚ç•Ç‚ÉˆÚ“®
-        MoveWallTop,    //•Ç‚©‚ç“Vˆä‚ÉˆÚ“®
-        MoveFall,       //—‰º
-        MoveUpdraft,    //ã¸‹C—¬
+        MoveWait,       //å¾…æ©Ÿ
+        MoveFloor,      //åºŠã‚¸ãƒ£ãƒ³ãƒ—ç§»å‹•
+        MoveJump,       //ä¸€æ®µä¸Šã«ã‚¸ãƒ£ãƒ³ãƒ—
+        MoveWall,       //å£ã€å¤©äº•ã‚’é€™ã£ã¦ç§»å‹•
+        MoveFloorWall,  //åºŠã‹ã‚‰å£ã«ç§»å‹•
+        MoveWallFloor,  //å£ã‹ã‚‰åºŠã«ç§»å‹•
+        MoveTopWall,    //å¤©äº•ã‹ã‚‰å£ã«ç§»å‹•
+        MoveWallTop,    //å£ã‹ã‚‰å¤©äº•ã«ç§»å‹•
+        MoveFall,       //è½ä¸‹
+        MoveUpdraft,    //ä¸Šæ˜‡æ°—æµ
     }
     enum PlayerStat
     {
@@ -49,11 +48,11 @@ public class MovePlayer : MonoBehaviour
     [SerializeField]
     LayerMask healLayers = 0;
 
-    [Tooltip("ã‚©‚ç8•ûŒü‚ÉŒv‰ñ‚è")]
+    [Tooltip("ä¸Šã‹ã‚‰8æ–¹å‘ã«æ™‚è¨ˆå›ã‚Š")]
     private bool[] isObject = { false, false, false, false, false, false, false, false };
-    private bool isCatchWallTop = false;        //“Vˆä’Í‚ñ‚Å‚¢‚é‚©
-    private bool isCatchWallRight = false;      //‰E‚Ì•Ç‚ğ‚Â‚©‚ñ‚Å‚¢‚é‚©
-    private bool isCatchWallLeft = false;       //¶‚Ì•Ç‚ğ‚Â‚©‚ñ‚Å‚¢‚é‚©
+    private bool isCatchWallTop = false;        //å¤©äº•æ´ã‚“ã§ã„ã‚‹ã‹
+    private bool isCatchWallRight = false;      //å³ã®å£ã‚’ã¤ã‹ã‚“ã§ã„ã‚‹ã‹
+    private bool isCatchWallLeft = false;       //å·¦ã®å£ã‚’ã¤ã‹ã‚“ã§ã„ã‚‹ã‹
     private bool isMoveEnd;
 
     private Vector3 oldPos = Vector3.zero;
@@ -62,15 +61,18 @@ public class MovePlayer : MonoBehaviour
     private MoveType moveType = MoveType.None;
     private PlayerStat playerState = PlayerStat.None;
 
-    [Tooltip("false:¶ˆÚ“®@true:‰EˆÚ“®")]
+    [Tooltip("false:å·¦ç§»å‹•ã€€true:å³ç§»å‹•")]
     private bool moveLR = true;
-    [Tooltip("false:‰ºˆÚ“®@true:ãˆÚ“®")]
+    [Tooltip("false:ä¸‹ç§»å‹•ã€€true:ä¸Šç§»å‹•")]
     private bool moveUD = true;
 
     private bool isUpdraftPanel = false;
 
     [SerializeField]
     int HP = 10;
+
+	[SerializeField]
+	float CheckUpBlocks = 10;
 
     private bool isRockFlg = false;
 
@@ -229,7 +231,7 @@ public class MovePlayer : MonoBehaviour
         }
     }
 
-    // “ü—Íó•t
+    // å…¥åŠ›å—ä»˜
     void GetInput()
     {
         if (moveType == MoveType.None)
@@ -248,7 +250,7 @@ public class MovePlayer : MonoBehaviour
                 }
                 if (!isObject[4] && !isCatchWallTop && !isCatchWallRight && !isCatchWallLeft)
                 {
-                    //©‘R—‰º
+                    //è‡ªç„¶è½ä¸‹
                     Vector3 pos = transform.position;
                     pos.y -= 1;
                     newPos = pos;
@@ -262,7 +264,7 @@ public class MovePlayer : MonoBehaviour
                 if (isUpdraftPanel)
                 {
                     RaycastHit2D hit = new RaycastHit2D();
-                    hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.up, 10.0f, wallLayers);
+                    hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.up, CheckUpBlocks, wallLayers);
 
                     int targetY = (int)Mathf.Round(hit.centroid.y - 0.5f);
 
@@ -567,34 +569,34 @@ public class MovePlayer : MonoBehaviour
         }
     }
 
-    // ÚG”»’è
+    // æ¥è§¦åˆ¤å®š
     RaycastHit2D checkObjectStatus(int direction)
     {
         RaycastHit2D hit = new RaycastHit2D();
         switch (direction)
         {
-            case 0: //ã
+            case 0: //ä¸Š
                 hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.up, checkDistance, wallLayers);
                 break;
-            case 1: //‰Eã
+            case 1: //å³ä¸Š
                 hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.up + Vector2.right, checkDistance, wallLayers);
                 break;
-            case 2: //‰E
+            case 2: //å³
                 hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.right, checkDistance, wallLayers);
                 break;
-            case 3: //‰E‰º
+            case 3: //å³ä¸‹
                 hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.down + Vector2.right, checkDistance, wallLayers);
                 break;
-            case 4: //‰º
+            case 4: //ä¸‹
                 hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.down, checkDistance, wallLayers);
                 break;
-            case 5: //¶‰º
+            case 5: //å·¦ä¸‹
                 hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.down + Vector2.left, checkDistance, wallLayers);
                 break;
-            case 6: //¶
+            case 6: //å·¦
                 hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.left, checkDistance, wallLayers);
                 break;
-            case 7: //¶ã
+            case 7: //å·¦ä¸Š
                 hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.up + Vector2.left, checkDistance, wallLayers);
                 break;
             default:
@@ -603,7 +605,7 @@ public class MovePlayer : MonoBehaviour
         return hit;
     }
 
-    void GetAroudObject()
+    public void GetAroudObject()
     {
         if (Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.down, checkDistance, healLayers))
         {
@@ -625,7 +627,7 @@ public class MovePlayer : MonoBehaviour
         }
     }
 
-    //°‚ğ¶‰EˆÚ“®
+    //åºŠã‚’å·¦å³ç§»å‹•
     Vector3 MoveFloor(Vector3 pos)
     {
         if (!moveLR)
@@ -642,7 +644,7 @@ public class MovePlayer : MonoBehaviour
         return pos;
     }
 
-    //ˆê’iã‚Ì°‚ÉƒWƒƒƒ“ƒvˆÚ“®
+    //ä¸€æ®µä¸Šã®åºŠã«ã‚¸ãƒ£ãƒ³ãƒ—ç§»å‹•
     Vector3 MoveJump(Vector3 pos)
     {
 
@@ -668,7 +670,7 @@ public class MovePlayer : MonoBehaviour
         return pos;
     }
 
-    //•Ç‚Ü‚½‚Í“Vˆä‚ğˆÚ“®
+    //å£ã¾ãŸã¯å¤©äº•ã‚’ç§»å‹•
     Vector3 MoveWall(Vector3 pos)
     {
         if (isCatchWallTop)
@@ -701,7 +703,7 @@ public class MovePlayer : MonoBehaviour
         return pos;
     }
 
-    //°‚©‚ç•Ç‚ÖˆÚ“®
+    //åºŠã‹ã‚‰å£ã¸ç§»å‹•
     Vector3 FloorWall(Vector3 pos)
     {
         //pos.x += ((newPos.x - oldPos.x) / removeCount);
@@ -721,7 +723,7 @@ public class MovePlayer : MonoBehaviour
         return pos;
     }
 
-    //•Ç‚©‚ç°‚ÖˆÚ“®
+    //å£ã‹ã‚‰åºŠã¸ç§»å‹•
     Vector3 WallFloor(Vector3 pos)
     {
         if (!moveLR)
@@ -736,7 +738,7 @@ public class MovePlayer : MonoBehaviour
         return pos;
     }
 
-    //“Vˆä‚©‚ç•Ç‚ÖˆÚ“®
+    //å¤©äº•ã‹ã‚‰å£ã¸ç§»å‹•
     Vector3 TopWall(Vector3 pos)
     {
         if (!moveLR)
@@ -751,7 +753,7 @@ public class MovePlayer : MonoBehaviour
         return pos;
     }
 
-    //•Ç‚©‚ç“Vˆä‚ÖˆÚ“®
+    //å£ã‹ã‚‰å¤©äº•ã¸ç§»å‹•
     Vector3 WallTop(Vector3 pos)
     {
         //pos.x += ((newPos.x - oldPos.x) / removeCount);
@@ -771,7 +773,7 @@ public class MovePlayer : MonoBehaviour
         return pos;
     }
 
-    //—‰ºƒ‚[ƒVƒ‡ƒ“
+    //è½ä¸‹ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³
     Vector3 MoveFall(Vector3 pos)
     {
         pos.x += ((newPos.x - oldPos.x) / removeCount);
@@ -780,7 +782,7 @@ public class MovePlayer : MonoBehaviour
         return pos;
     }
 
-    //ŒÅ‘ÌˆÚ“®ƒ‚[ƒVƒ‡ƒ“
+    //å›ºä½“æ™‚ç§»å‹•ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³
     Vector3 MoveSlideRock(Vector3 pos)
     {
         Vector3 scale = transform.localScale;
@@ -796,7 +798,7 @@ public class MovePlayer : MonoBehaviour
         return pos;
     }
 
-    //ŒÅ‘ÌƒWƒƒƒ“ƒvƒ‚[ƒVƒ‡ƒ“
+    //å›ºä½“æ™‚ã‚¸ãƒ£ãƒ³ãƒ—ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³
     Vector3 MoveJumpRock(Vector3 pos)
     {
         if (moveCount <= (removeCount / 2))
@@ -822,7 +824,7 @@ public class MovePlayer : MonoBehaviour
         return pos;
     }
 
-    // ƒAƒjƒ[ƒ^‚ÌXV
+    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°
     void UpdateAnimator()
     {
         animator.SetInteger("MoveType", ((int)moveType));
