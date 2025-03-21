@@ -22,6 +22,7 @@ public class MovePlayer : MonoBehaviour
 		MoveWallTop,    //壁から天井に移動
 		MoveFall,       //落下
 		MoveUpdraft,    //上昇気流
+		MoveWoodBurn,	//ブロック炎上
 	}
 	private enum PlayerState
 	{
@@ -36,6 +37,8 @@ public class MovePlayer : MonoBehaviour
 	const int MoveCountFall = 10;
 	[SerializeField]
 	const int MoveCountUpdraft = 20;
+	[SerializeField]
+	const int MoveCountBurn = 20;
 
 	[SerializeField]
 	Animator animator;
@@ -53,10 +56,13 @@ public class MovePlayer : MonoBehaviour
 	LayerMask healLayers = 0;
 	[SerializeField]
 	LayerMask boxLayers = 0;
+	[SerializeField]
+	LayerMask woodLayers = 0;
 
 	[Tooltip("上から8方向に時計回り")]
 	private bool[] isObject = { false, false, false, false, false, false, false, false };
 	private bool[] isBox = { false, false };
+	private bool[] isWood = { false, false, false };
 	private bool isCatchWallTop = false;        //天井掴んでいるか
 	private bool isCatchWallRight = false;      //右の壁をつかんでいるか
 	private bool isCatchWallLeft = false;       //左の壁をつかんでいるか
@@ -101,7 +107,6 @@ public class MovePlayer : MonoBehaviour
 	{
 		UpdateAnimator();
 		GetInput();
-		//Debug.Log((int)moveType);
 	}
 
 	private void FixedUpdate()
@@ -182,6 +187,32 @@ public class MovePlayer : MonoBehaviour
 				pos = MoveUpdraft(pos);
 				isMoveEnd = removeCount <= moveCount;
 				break;
+			case MoveType.MoveWoodBurn:
+				removeCount = MoveCountBurn;
+				isMoveEnd = removeCount <= moveCount;
+				for(int i = 0; i < 3; i++)
+				{
+					if (isWood[i])
+					{
+						RaycastHit2D hit = new RaycastHit2D();
+						switch (i)
+						{
+							case 0:
+								hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.down, checkDistance, woodLayers);
+								break;
+							case 1:
+								hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.right, checkDistance, woodLayers);
+								break;
+							case 2:
+								hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.left, checkDistance, woodLayers);
+								break;
+						}
+
+						WoodFloor woodFloor = hit.transform.gameObject.GetComponent<WoodFloor>();
+						woodFloor.SetBurnCount(moveCount, removeCount);
+					}
+				}
+				break;
 			default:
 				break;
 		}
@@ -240,7 +271,6 @@ public class MovePlayer : MonoBehaviour
 		else
 		{
 			transform.position = pos;
-			//Debug.Log(pos);
 		}
 	}
 
@@ -270,6 +300,16 @@ public class MovePlayer : MonoBehaviour
 				if (CheckFall())
 				{
 					return;
+				}
+				for(int i = 0; i < 3; i++)
+				{
+					if (isWood[i])
+					{
+						playerState = PlayerState.StateMove;
+						moveType = MoveType.MoveWoodBurn;
+						HP--;
+						return;
+					}
 				}
 
 				if (isUpdraftPanel)
@@ -424,13 +464,11 @@ public class MovePlayer : MonoBehaviour
 					{
 						return;
 					}
-					Debug.Log("A");
 					moveLR = false;
 					Vector3 pos = transform.position;
 
 					if (isCatchWallRight)
 					{
-						Debug.Log("B");
 						if (isCatchWallTop)
 						{
 							pos.x -= 1.0f;
@@ -447,7 +485,6 @@ public class MovePlayer : MonoBehaviour
 					}
 					else if (isCatchWallLeft)
 					{
-						Debug.Log("C");
 						if (!isObject[7])
 						{
 							pos.x -= 1.0f;
@@ -462,7 +499,6 @@ public class MovePlayer : MonoBehaviour
 					}
 					else if (isCatchWallTop)
 					{
-						Debug.Log("D");
 						if (!isObject[6])
 						{
 							if (!isObject[7])
@@ -487,7 +523,6 @@ public class MovePlayer : MonoBehaviour
 					}
 					else
 					{
-						Debug.Log("E");
 						if (isObject[6])
 						{
 							if (isObject[7])
@@ -701,6 +736,9 @@ public class MovePlayer : MonoBehaviour
 		{
 			isUpdraftPanel = false;
 		}
+		isWood[0] = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.down, checkDistance, woodLayers).collider != null;
+		isWood[1] = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.right, checkDistance, woodLayers).collider != null;
+		isWood[2] = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.left, checkDistance, woodLayers).collider != null;
 	}
 
 	//床を左右移動
