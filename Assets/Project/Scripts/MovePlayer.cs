@@ -23,7 +23,7 @@ public class MovePlayer : MonoBehaviour
 		MoveFall,       //落下
 		MoveUpdraft,    //上昇気流
 	}
-	private enum PlayerStat
+	private enum PlayerState
 	{
 		None = 0,
 		StateWait,
@@ -51,9 +51,12 @@ public class MovePlayer : MonoBehaviour
 	LayerMask updraftLayers = 0;
 	[SerializeField]
 	LayerMask healLayers = 0;
+	[SerializeField]
+	LayerMask boxLayers = 0;
 
 	[Tooltip("上から8方向に時計回り")]
 	private bool[] isObject = { false, false, false, false, false, false, false, false };
+	private bool[] isBox = { false, false };
 	private bool isCatchWallTop = false;        //天井掴んでいるか
 	private bool isCatchWallRight = false;      //右の壁をつかんでいるか
 	private bool isCatchWallLeft = false;       //左の壁をつかんでいるか
@@ -63,7 +66,7 @@ public class MovePlayer : MonoBehaviour
 	private Vector3 newPos = Vector3.zero;
 
 	private MoveType moveType = MoveType.None;
-	private PlayerStat playerState = PlayerStat.None;
+	private PlayerState playerState = PlayerState.None;
 
 	[Tooltip("false:左移動　true:右移動")]
 	private bool moveLR = true;
@@ -86,7 +89,7 @@ public class MovePlayer : MonoBehaviour
 	void Start()
 	{
 		Application.targetFrameRate = 60;
-		playerState = PlayerStat.StateWait;
+		playerState = PlayerState.StateWait;
 
 		HP = defaultHP;
 
@@ -107,7 +110,7 @@ public class MovePlayer : MonoBehaviour
 		{
 			return;
 		}
-		if (moveType == MoveType.MoveWall || moveType == MoveType.MoveFloorWall || moveType == MoveType.MoveWallFloor || moveType == MoveType.MoveTopWall || moveType == MoveType.MoveWallTop || (HP == 0 && moveType == MoveType.MoveFloor))
+		if (moveType == MoveType.MoveWall || moveType == MoveType.MoveFloorWall || moveType == MoveType.MoveWallTop || (HP == 0 && moveType == MoveType.MoveFloor))
 		{
 			if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0)
 			{
@@ -209,12 +212,12 @@ public class MovePlayer : MonoBehaviour
 				}
 			}
 
-			if (playerState == PlayerStat.StateMove)
+			if (playerState == PlayerState.StateMove)
 			{
 				moveType = MoveType.None;
 			}
 			isMoveEnd = false;
-			playerState = PlayerStat.StateWait;
+			playerState = PlayerState.StateWait;
 			moveCount = 0;
 
 			if (!isCatchWallTop && !isCatchWallRight && !isCatchWallLeft)
@@ -244,13 +247,18 @@ public class MovePlayer : MonoBehaviour
 	// 入力受付
 	void GetInput()
 	{
+		if(Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.zero, 0, wallLayers).collider != null)
+		{
+			return;
+		}
+
 		if (moveType == MoveType.None)
 		{
 			moveType = MoveType.MoveWait;
 		}
 		switch (playerState)
 		{
-			case PlayerStat.StateWait:
+			case PlayerState.StateWait:
 				oldPos = transform.position;
 				if (HP == 0)
 				{
@@ -273,13 +281,17 @@ public class MovePlayer : MonoBehaviour
 
 					newPos = new Vector3(transform.position.x, targetY, 0.0f);
 
-					playerState = PlayerStat.StateMove;
+					playerState = PlayerState.StateMove;
 					moveType = MoveType.MoveUpdraft;
 					return;
 				}
 
 				if (Input.GetKey(KeyCode.D))
 				{
+					if (isObject[2] && isObject[0])
+					{
+						return;
+					}
 					moveLR = true;
 					Vector3 pos = transform.position;
 
@@ -364,14 +376,38 @@ public class MovePlayer : MonoBehaviour
 						}
 						else
 						{
-							pos.x += 1.0f;
-							moveType = MoveType.MoveFloor;
+							if (isBox[0])
+							{
+								RaycastHit2D hit = new RaycastHit2D();
+								hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.right, checkDistance, boxLayers);
+
+								MoveWallScript moveWallScript = hit.transform.gameObject.GetComponent<MoveWallScript>();
+								if (moveWallScript != null)
+								{
+									if (moveWallScript.Move(2))
+									{
+										pos.x += 1.0f;
+										moveType = MoveType.MoveFloor;
+									}
+									else
+									{
+										pos.x += 1.0f;
+										pos.y += 1.0f;
+										moveType = MoveType.MoveJump;
+									}
+								}
+							}
+							else
+							{
+								pos.x += 1.0f;
+								moveType = MoveType.MoveFloor;
+							}
 						}
 					}
 
 					newPos = pos;
 
-					playerState = PlayerStat.StateMove;
+					playerState = PlayerState.StateMove;
 
 					if (HP > 0)
 					{
@@ -384,6 +420,10 @@ public class MovePlayer : MonoBehaviour
 				}
 				if (Input.GetKey(KeyCode.A))
 				{
+					if (isObject[6] && isObject[0])
+					{
+						return;
+					}
 					Debug.Log("A");
 					moveLR = false;
 					Vector3 pos = transform.position;
@@ -473,15 +513,38 @@ public class MovePlayer : MonoBehaviour
 						}
 						else
 						{
-							Debug.Log("F");
-							pos.x -= 1.0f;
-							moveType = MoveType.MoveFloor;
+							if (isBox[1])
+							{
+								RaycastHit2D hit = new RaycastHit2D();
+								hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.left, checkDistance, boxLayers);
+
+								MoveWallScript moveWallScript = hit.transform.gameObject.GetComponent<MoveWallScript>();
+								if (moveWallScript != null)
+								{
+									if (moveWallScript.Move(6))
+									{
+										pos.x -= 1.0f;
+										moveType = MoveType.MoveFloor;
+									}
+									else
+									{
+										pos.x -= 1.0f;
+										pos.y += 1.0f;
+										moveType = MoveType.MoveJump;
+									}
+								}
+							}
+							else
+							{
+								pos.x -= 1.0f;
+								moveType = MoveType.MoveFloor;
+							}
 						}
 					}
 
 					newPos = pos;
 
-					playerState = PlayerStat.StateMove;
+					playerState = PlayerState.StateMove;
 
 					if (HP > 0)
 					{
@@ -521,7 +584,7 @@ public class MovePlayer : MonoBehaviour
 					}
 					newPos = pos;
 
-					playerState = PlayerStat.StateMove;
+					playerState = PlayerState.StateMove;
 
 					if (HP > 0)
 					{
@@ -538,7 +601,7 @@ public class MovePlayer : MonoBehaviour
 						pos.y -= 1.0f;
 						newPos = pos;
 
-						playerState = PlayerStat.StateMove;
+						playerState = PlayerState.StateMove;
 						//isMoveEnd = false;
 						moveType = MoveType.MoveWall;
 						isCatchWallTop = false;
@@ -551,7 +614,7 @@ public class MovePlayer : MonoBehaviour
 
 						newPos = pos;
 
-						playerState = PlayerStat.StateMove;
+						playerState = PlayerState.StateMove;
 						//isMoveEnd = false;
 						moveType = MoveType.MoveFall;
 					}
@@ -566,7 +629,7 @@ public class MovePlayer : MonoBehaviour
 					}
 				}
 				break;
-			case PlayerStat.StateMove:
+			case PlayerState.StateMove:
 
 				//DrawMove();
 
@@ -594,6 +657,10 @@ public class MovePlayer : MonoBehaviour
 				break;
 			case 4: //下
 				hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.down, checkDistance, wallLayers);
+				if (hit.collider == null)
+				{
+					hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.down, checkDistance, boxLayers);
+				}
 				break;
 			case 5: //左下
 				hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.down + Vector2.left, checkDistance, wallLayers);
@@ -612,7 +679,8 @@ public class MovePlayer : MonoBehaviour
 
 	public void GetAroudObject()
 	{
-		if (Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.down, checkDistance, healLayers))
+		if (Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.down, checkDistance, healLayers).collider != null
+			|| Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.up, checkDistance, healLayers).collider != null)
 		{
 			HP = defaultHP;
 			isRockFlg = false;
@@ -622,9 +690,12 @@ public class MovePlayer : MonoBehaviour
 			isObject[i] = checkObjectStatus(i).collider != null;
 		}
 
+		isBox[0] = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.right, checkDistance, boxLayers).collider != null;
+		isBox[1] = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.left, checkDistance, boxLayers).collider != null;
+
 		if (HP > 0)
 		{
-			isUpdraftPanel = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.down, checkDistance, updraftLayers);
+			isUpdraftPanel = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.down, checkDistance, updraftLayers).collider != null;
 		}
 		else
 		{
@@ -837,9 +908,9 @@ public class MovePlayer : MonoBehaviour
 		return pos;
 	}
 
-	public bool GetPlayerStat()
+	public bool GetPlayerState()
 	{
-		return !(playerState == PlayerStat.StateWait);
+		return !(playerState == PlayerState.StateWait);
 	}
 
 	public bool CheckFall()
@@ -851,7 +922,7 @@ public class MovePlayer : MonoBehaviour
 			pos.y -= 1;
 			newPos = pos;
 
-			playerState = PlayerStat.StateMove;
+			playerState = PlayerState.StateMove;
 			moveType = MoveType.MoveFall;
 			moveUD = false;
 			return true;

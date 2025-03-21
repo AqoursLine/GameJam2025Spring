@@ -23,14 +23,13 @@ public class ChangeStageScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
-
 		// シーン内のPlayerスクリプトを持つオブジェクトを探す
 		MovePlayer movePlayer = FindObjectOfType<MovePlayer>();
 
 		// 見つかった場合のみ関数を実行
 		if (movePlayer != null)
 		{
-			if (Input.GetKeyDown(KeyCode.Space) && !movePlayer.GetPlayerStat())
+			if (Input.GetKeyDown(KeyCode.Space) && !movePlayer.GetPlayerState())
 			{
 				//プレイヤーの相対ポジションを取得
 				Vector3 pos = player.transform.position - stages[stageNum].transform.position;
