@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class WoodFloor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+	[SerializeField]
+	Animator animator;
+
+	// Start is called before the first frame update
+	void Start()
     {
         
     }
@@ -21,9 +24,11 @@ public class WoodFloor : MonoBehaviour
 
 	public void SetBurnCount(int count, int removeCount)
 	{
-		if(removeCount <= count)
+		if(count >= removeCount - 1)
 		{
 			this.gameObject.SetActive(false);
 		}
+		animator.SetInteger("animCount", (count));
+		Debug.Log(count);
 	}
 }

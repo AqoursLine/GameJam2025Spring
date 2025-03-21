@@ -39,7 +39,7 @@ public class MovePlayer : MonoBehaviour
 	[SerializeField]
 	const int MoveCountUpdraft = 20;
 	[SerializeField]
-	const int MoveCountBurn = 20;
+	const int MoveCountBurn = 40;
 
 	[SerializeField]
 	Animator animator;
@@ -194,26 +194,29 @@ public class MovePlayer : MonoBehaviour
 			case MoveType.MoveWoodBurn:
 				removeCount = MoveCountBurn;
 				isMoveEnd = removeCount <= moveCount;
-				for(int i = 0; i < 3; i++)
+				if (!isMoveEnd)
 				{
-					if (isWood[i])
+					for (int i = 0; i < 3; i++)
 					{
-						RaycastHit2D hit = new RaycastHit2D();
-						switch (i)
+						if (isWood[i])
 						{
-							case 0:
-								hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.down, checkDistance, woodLayers);
-								break;
-							case 1:
-								hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.right, checkDistance, woodLayers);
-								break;
-							case 2:
-								hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.left, checkDistance, woodLayers);
-								break;
-						}
+							RaycastHit2D hit = new RaycastHit2D();
+							switch (i)
+							{
+								case 0:
+									hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.down, checkDistance, woodLayers);
+									break;
+								case 1:
+									hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.right, checkDistance, woodLayers);
+									break;
+								case 2:
+									hit = Physics2D.CircleCast((Vector2)transform.position, checkRadius, Vector2.left, checkDistance, woodLayers);
+									break;
+							}
 
-						WoodFloor woodFloor = hit.transform.gameObject.GetComponent<WoodFloor>();
-						woodFloor.SetBurnCount(moveCount, removeCount);
+							WoodFloor woodFloor = hit.transform.gameObject.GetComponent<WoodFloor>();
+							woodFloor.SetBurnCount(moveCount, removeCount);
+						}
 					}
 				}
 				break;
