@@ -32,7 +32,6 @@ public class GoalScript : MonoBehaviour {
 			//プレイヤーの移動が終わったら
 			if (!movePlayer.GetPlayerState()) {
 				clearScript.IsClearEffect();
-				movePlayer.enabled = false;
 			}
 
 			isGoal = false;
