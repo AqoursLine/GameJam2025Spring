@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2875692313465984051}
   - component: {fileID: 8996499907992286621}
   - component: {fileID: 6245065676747616079}
+  - component: {fileID: -7697472343193131817}
   m_Layer: 1
   m_Name: Player
   m_TagString: Untagged
@@ -173,8 +174,11 @@ MonoBehaviour:
   healLayers:
     serializedVersion: 2
     m_Bits: 256
-  HP: 10
-  CheckUpBlocks: 10
+  boxLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  defaultHP: 10
+  CheckUpBlocks: 20
 --- !u!95 &6245065676747616079
 Animator:
   serializedVersion: 5
@@ -196,3 +200,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-7697472343193131817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8826706790981979635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f1300bf942592042bc10dd87cba6d51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goalMask:
+    serializedVersion: 2
+    m_Bits: 0
+  clearScript: {fileID: 0}
