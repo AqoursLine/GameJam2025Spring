@@ -20,9 +20,13 @@ public class ClearScript : MonoBehaviour {
 	}
 
 	public void IsClearEffect() {
+		Debug.Log("北");
+
 		for (int i = 0; i < clearEffects.Length; i++) {
 			if (i != 0) {
-				clearEffects[i].transform.position += Camera.main.transform.position;
+				Vector3 pos = Camera.main.transform.position;
+				pos.z = 0;
+				clearEffects[i].transform.position += pos;
 			}
 			clearEffects[i].SetActive(true);
 		}

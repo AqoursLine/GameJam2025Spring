@@ -34,11 +34,12 @@ public class GoalScript : MonoBehaviour {
 			//プレイヤーの移動が終わったら
 			if (!movePlayer.GetPlayerState()) {
 				clearScript.IsClearEffect();
+				Debug.Log(isFirst);
+				isFirst = false;
 			}
 
 			isGoal = false;
 
-			isFirst = false;
 		}
 	}
 }
