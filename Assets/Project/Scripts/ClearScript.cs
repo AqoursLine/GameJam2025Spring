@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ClearScript : MonoBehaviour {
 	[SerializeField]
-	GameObject clearEffect;
+	GameObject[] clearEffects;
 
 	// Start is called before the first frame update
 	void Start() {
@@ -20,8 +20,13 @@ public class ClearScript : MonoBehaviour {
 	}
 
 	public void IsClearEffect() {
-		
+		for (int i = 0; i < clearEffects.Length; i++) {
+			if (i != 0) {
+				clearEffects[i].transform.position += Camera.main.transform.position;
+			}
+			clearEffects[i].SetActive(true);
+		}
 
-		clearEffect.SetActive(true);
+
 	}
 }
